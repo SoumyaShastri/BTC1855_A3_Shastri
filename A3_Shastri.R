@@ -9,8 +9,21 @@ writeLines(wordList, file_path)
 read_wordList <- readLines(file_path)
 # One word will be sampled from the list as the secret word 
 secretWord <- sample(wordList, size = 1)
-#Introduce the game to user and inform them of the length of the secret word and how many guesses they are allowed
-print(paste("Welcome to Hangman! The category for this game is National Capitals. The secret word you need to guess has a total of", nchar(secretWord), "letters. Start by typing a letter to make your first guess. You have a total of 10 guesses available. Good luck!"))
+#Max number of incorrect guesses allowed
+max_incorrect_guesses <- 10
+#Tracking correct and incorrect guesses 
+guesses <- c()
+incorrect_guesses <- c() 
+
+
+#Welcome messaged to user: inform them of the length of the secret word and how many guesses they are allowed
+cat("Welcome to Hangman!\n")
+cat("Your category is National Capitals.\n")
+cat("This secret word has", nchar(secretWord), "letters.\n")
+cat("Type a letter to make your first guess.\n")
+cat("You have a total of", max_incorrect_guesses, "guesses available.\n")
+cat("Good luck!")
+
 
 
 ##TO DO: 
