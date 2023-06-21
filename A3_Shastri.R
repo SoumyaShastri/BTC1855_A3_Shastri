@@ -25,21 +25,27 @@ visualClue <- function(word, guesses) {
   cat(masked_word, "\n") #this prints the final word representation
 }
 
+# Create function to check if the user's guess is correct
+isCorrectGuess <- function(word, guess) {
+  guess <- tolower(guess)  # Convert guess to lowercase 
+  guess %in% strsplit(tolower(word), "")[[1]]  # Check if guess exists in list of characters from strsplit which will render %in% true
+}
 
-#Max number of incorrect guesses allowed
-max_incorrect_guesses <- 10
-#Tracking correct and incorrect guesses 
-guesses <- c()
-incorrect_guesses <- c() 
+#Create function to play the game
+playHangman <- function(word) 
+  #Max number of incorrect guesses allowed
+  max_incorrect_guesses <- 10
+  #Tracking correct and incorrect guesses 
+  guesses <- c()
+  incorrect_guesses <- c() 
 
-
-#Welcome messaged to user: inform them of the length of the secret word and how many guesses they are allowed
-cat("Welcome to Hangman!\n")
-cat("Your category is National Capitals.\n")
-cat("This secret word has", nchar(secretWord), "letters.\n")
-cat("Type a letter to make your first guess.\n")
-cat("You have a total of", max_incorrect_guesses, "guesses available.\n")
-cat("Good luck!")
+  #Welcome messaged to user: inform them of the length of the secret word and how many guesses they are allowed
+  cat("Welcome to Hangman!\n")
+  cat("Your category is National Capitals.\n")
+  cat("This secret word has", nchar(secretWord), "letters.\n")
+  cat("Type a letter to make your first guess.\n")
+  cat("You have a total of", max_incorrect_guesses, "guesses available.\n")
+  cat("Good luck!")
 
 
 
