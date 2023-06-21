@@ -2,10 +2,20 @@
 #Soumya Shastri
 
 ##Program Capabilities: 
-#* - 
-
-
-
+#* - Reads the word list from project directory 
+#* - Samples a word from the list at random 
+#* - Informs the user of the length of the word and number of guesses allowed
+#* in the welcome message 
+#* - Validates user entry: Ensures entry is a letter input and accepts both lower 
+#* and upper case letters 
+#* -Verifies if guess is correct/incorrect and asks for the next letter
+#* -Warns user if they have already guessed the letter
+#* -Appropriate message is displayed if user has guessed the word correctly or if 
+#* they have exhausted their tries
+#* -Informs user of their remaining tries as they are playing
+#* -Visual cue is displayed for user to track their progress in the game
+#* - Allows user to guess the entire word at any time (Program recognizes an entry
+#* of more than one letter as an attempt to guess the entire word)
 
 #Create a a dictionary of words for the program to recognize
 wordList <- c("ankara", "amsterdam", "athens", "baghdad", "baku", "beijing", "berlin", "bogota", 
@@ -72,7 +82,7 @@ playHangman <- function(word) {
         cat("Congratulations! You guessed the capital correctly. Thank you for playing. You are a true champion!\n")
       } else {
         # Once the word is guessed incorrectly, there are no more tries remaining, the secret word is revealed
-        cat("Incorrect guess! The answer is:", word, "\n")
+        cat("Incorrect guess! Game over. The answer is:", word, "\n")
       }
       break
     }
@@ -117,5 +127,5 @@ playHangman <- function(word) {
   }
 }
 
-# Start the game with the selected word
+# Start the game with the selected word. Enjoy! 
 playHangman(secretWord)
