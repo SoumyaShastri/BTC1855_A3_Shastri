@@ -1,12 +1,13 @@
-#Hangman by Soumya Shastri
+#BTC1855H - Assignment 3: Hangman Game 
+#Soumya Shastri
 
-#Create a a dictionary of words for the program to recognize
-wordList <- c("washington", "cairo", "ottawa", "vienna", "paris", "berlin", "canberra")
-#Convert the word list to a text file 
-file_path <- "word_list.txt"
-writeLines(wordList, file_path)
-#In order to read the word list from the program
-read_wordList <- readLines(file_path)
+#*Create a a dictionary of words for the program to recognize in a txt. file
+file_path <- "word_inventory.txt"
+#*the read.table function used to read the file, we indicate that there is no header
+#* the newline character "\n" allows each line to be treated as a separate record
+#* colClasses = "character" argument ensures the content is read as character strings
+wordList <- read.table(file_path, header=FALSE, sep = "\n", colClasses = "character")
+
 # One word will be sampled from the list as the secret word 
 secretWord <- sample(wordList, size = 1)
 #Max number of incorrect guesses allowed
