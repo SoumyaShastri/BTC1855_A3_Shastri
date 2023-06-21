@@ -47,9 +47,35 @@ playHangman <- function(word)
   cat("You have a total of", max_incorrect_guesses, "guesses available.\n")
   cat("Good luck!")
 
+  # Create a game loop so the game is interactive
+  while (TRUE) {
+    visualClue(word, guesses)
+    cat("\n")
+    
+    # Get user input
+    user_input <- tolower(readline(prompt = "Enter your guess (one letter or the whole word): "))
+    
+    # Give the option to user if they want to guess the whole word
+    # The program assumes that if user inputs more than one letter, they are attempting to guess the whole word
+    if (nchar(user_input) > 1) {
+      if (tolower(user_input) == tolower(word)) {
+        cat("Congratulations! You guessed the capital correctly. Game won!\n")
+      } else {
+        # Once the word is guessed incorrectly, there are no more tries remaining, the secret word is revealed
+        cat("Incorrect guess! The secret word was:", word, "\n")
+      }
+      break
+    }
+    # Ensures the user input is a letter
+    if (!grepl("[a-z]", user_input) || nchar(user_input) != 1) {
+      cat("Invalid entry. Please enter a single letter or the whole word. You got this!\n")
+      next
+    }
+    
+    
+    
 
-
-##TO DO: 
+##This program's capabilities: 
 #* inform of remaining tries
 #* ensure character entered is letter 
 #* inform user of incorrect or correct tries - graphical representation?? 
