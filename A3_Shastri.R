@@ -17,6 +17,9 @@
 #* - Allows user to guess the entire word at any time (Program recognizes an entry
 #* of more than one letter as an attempt to guess the entire word)
 
+#*Note: I used cat() instead of print() for displaying output in this program
+#*since I didn't want any additional formatting such as indicating the index of output '[1]' 
+
 #Create a a dictionary of words for the program to recognize
 wordList <- c("ankara", "amsterdam", "athens", "baghdad", "baku", "beijing", "berlin", "bogota", 
               "brasilia", "brussels", "budapest", "cairo", "canberra", "caracas", "copenhagen", 
@@ -84,16 +87,19 @@ playHangman <- function(word) {
         # Once the word is guessed incorrectly, there are no more tries remaining, the secret word is revealed
         cat("Incorrect guess! Game over. The answer is:", word, "\n")
       }
-      break
+      break #break statement used to exit the loop when user has exhausted all their tries, otherwise loop would be executed even when game has ended
     }
     # Validation: Ensures that the user input is a letter
+    #*The grepl() function searches for a pattern in the string of "[a-z]". The ! operator negates the result, so the 
+    #*condition is true only if the user_input does not contain any letter. nchar() not 1 indicates that the input is 
+    #*either empty, multiple characters, or more than a single letter which all counts as invalid entries
     if (!grepl("[a-z]", user_input) || nchar(user_input) != 1) {
       cat("Invalid entry. Please enter a single letter or the whole word. You got this!\n")
-      next
+      next #skips the remaining code
     }
     
     # Additional functionality: Check if the letter has already been guessed
-    if (user_input %in% guesses) {
+    if (user_input %in% guesses) { # if user_input was already found in guesses
       cat("You already guessed that letter. Please enter a new letter or guess the whole word\n")
       next
     }
@@ -107,7 +113,7 @@ playHangman <- function(word) {
       incorrect_guesses <- c(incorrect_guesses, user_input)
     }
     # Check if the game is won (by guessing letters only)
-    if (all(strsplit(tolower(word), "")[[1]] %in% guesses)) {
+    if (all(strsplit(tolower(word), "")[[1]] %in% guesses)) { #if all the individual letters of the 'word' are found in the 'guesses', returns TRUE
       displayProgress(word, guesses)
       cat("Congratulations! You guessed the capital correctly. Thank you for playing. You are a true champion!\n")
       break
@@ -127,5 +133,5 @@ playHangman <- function(word) {
   }
 }
 
-# Start the game with the selected word. Enjoy! 
+# Start the game! Enjoy! 
 playHangman(secretWord)
